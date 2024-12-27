@@ -23,7 +23,7 @@ class CustomUserManager(BaseUserManager):
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
-    username = models.ChatField(max_length=150)
+    username = models.CharField(max_length=150)
     profile_image = models.ImageField(upload_to='profile_image', blank=True, null=True)
 
     USERNAME_FIELD = 'email'
