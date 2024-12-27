@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     
     # my apps
     'accounts',
-    'articles',
+    'products',
 
     'rest_framework_simplejwt.token_blacklist',
 ]
