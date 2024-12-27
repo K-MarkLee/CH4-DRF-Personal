@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # third party apps
     "rest_framework",
     "rest_framework_simplejwt",
+    "django_extensions",
 
     # my apps
     "accounts",
@@ -135,7 +136,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # 사용자 모델 설정
-AUTH_USER_MODEL = "accounts.CustomUser"
+AUTH_USER_MODEL = "accounts.User"
 
 
 # JWT 설정
