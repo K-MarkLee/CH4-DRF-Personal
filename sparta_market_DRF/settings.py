@@ -31,24 +31,22 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    
+     # DRF
+    'rest_framework',
+    'rest_framework_simplejwt',
+    
+    # my apps
+    'accounts',
+    'articles',
 
-    # DRF
-    "rest_framework",
-    "rest_framework_simplejwt",
-    "rest_framework_simplejwt.token_blacklist",
-
-    # apps
-    "accounts",
-    "products",
-    "users"
-
-
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
