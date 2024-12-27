@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     # third party apps
     "rest_framework",
-    "rest_framrwork_simplejwt",
+    "rest_framework_simplejwt",
 
     # my apps
     "accounts",
