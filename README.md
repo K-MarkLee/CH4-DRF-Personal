@@ -18,16 +18,19 @@
 
 &nbsp;   
 
+
 2. 가상환경 설정 및 활성화
     - `python -m venv venv`
     - `source venv/Scripts/activate`
 
 &nbsp;
 
+
 3. 패키지 설치
     - `pip install -r requirements.txt`
 
 &nbsp;
+
 
 4. 데이터베이스 마이그레이션
     - `python manage.py makemigrations`
@@ -38,7 +41,7 @@
 5. 서버 실행
     - `python manage.py runserver`
 
-
+&nbsp;
 ---
 ## 기능 테스트
 
@@ -58,6 +61,7 @@
 
 
 &nbsp;
+---
 
 ### 2. 로그인
 ![로그인](./images/login_account.png)
@@ -67,13 +71,14 @@
 
 
 &nbsp;
+---
 
 ### 3. 로그 아웃
 ![로그아웃](./images/log_out.png)
 
 
 &nbsp;
-
+---
 
 ### 4. 상품 등록
 ![상품등록](./images/product_create.png)
@@ -83,6 +88,7 @@
 
 
 &nbsp;
+---
 
 ### 5. 상품 조회
 ![상품조회](./images/product_list.png)
@@ -92,7 +98,7 @@
 
 
 &nbsp;
-
+---
 
 ### 6. 상품 수정
 ![상품수정](./images/product_update.png)
@@ -102,6 +108,7 @@
 
 
 &nbsp;
+---
 
 ### 7. 상품 제거
 ![상품제거](./images/product_delete.png)
@@ -114,6 +121,7 @@
 
 
 &nbsp;
+---
 
 
 ### 8. 프로필
@@ -133,4 +141,24 @@
 
 &nbsp;
 
-### 2. 
+### 2. 생년월일 형식 오류
+- 문제 :  birth_date 필드에 잘못된 형식의 날짜가 입력되면 터짐
+- 해결 : serializers에서 형식의 검증을 해서 try, except 처리를 함
+
+
+&nbsp;
+
+
+### 3. 슈퍼유저 생성 중 필드 누락
+- 문제 : 슈퍼 유저가 생성되지 않음
+- 원인 : 커스텀 User를 만드는 중에 model에서 BaseAbstractUser 사용으로 인한 is.superuser필드 미포함으로 인한 오류.
+
+- 해결 : AbstractUser을 상속받아 사용.
+
+
+&nbsp;
+
+### 4. makemigration 오류
+- 문제 : model의 변경 으로 인한 테이블의 변경으로 makemigrations를 진행했지만 되지 않음.
+- 원인 : 상속받는 모델의 변경으로 인한 잔존 데이터가 makemigrations를 방해함.
+- 해결 : 각 app의 migraions 초기화 > db.sqlite3 삭제 후 처음부터 생성.
