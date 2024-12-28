@@ -43,6 +43,94 @@
 ## 기능 테스트
 
 ### 1. 회원가입
-    ![회원가입](./images/create_account.png)
-    
+![회원가입](./images/create_account.png)
 
+
+### 1.1. 회원가입 검증
+![회원가입 검증](./images/email_username_error_create.png)
+
+### 1.2 회원가입 검증2
+![회원가입 검증2](./images/password_error_create.png)
+
+
+### 1.3 회원가입 검증3
+![회원가입 검증3](./images/birth_date_error_create.png)
+
+
+&nbsp;
+
+### 2. 로그인
+![로그인](./images/login_account.png)
+
+### 2.2 로그인 검증
+![로그인 검증](./images/invalid_error_login.png)
+
+
+&nbsp;
+
+### 3. 로그 아웃
+![로그아웃](./images/log_out.png)
+
+
+&nbsp;
+
+
+### 4. 상품 등록
+![상품등록](./images/product_create.png)
+
+### 4.1 상품 등록 검증
+![상품등록 검증](./images/not_filled_form_product_create.png)
+
+
+&nbsp;
+
+### 5. 상품 조회
+![상품조회](./images/product_list.png)
+
+### 5.1 상품 조회 (페이지네이션)
+![페이지네이션](./images/pagination_product_list.png)
+
+
+&nbsp;
+
+
+### 6. 상품 수정
+![상품수정](./images/product_update.png)
+
+### 6.1 상품 수정 검증
+![상품수정 검증](./images/no_access_error_product_update.png)
+
+
+&nbsp;
+
+### 7. 상품 제거
+![상품제거](./images/product_delete.png)
+
+### 7.1 상품 제거 검증
+![상품제거 검증](./images/no_access_error_product_delete.png)
+
+### 7.2 상품 제거 후 리스트
+![제거 후 리스트](./images/product_list_after_product_delete.png)
+
+
+&nbsp;
+
+
+### 8. 프로필
+![프로필](./images/profile.png)
+
+### 8.1 프로필 검증
+![프로필 검증](./images/login_access_error_profile.png)
+
+---
+&nbsp;
+
+## 트러블 슈팅
+
+### 1. JWT 토큰 관련
+- 문제 : Access Token 은 입력을 받는데 반에, Refrsh Token 을 받지 않음
+- 해결 : settings 에서 토큰 라이브러리 등록
+
+&nbsp;
+
+### 2. 
