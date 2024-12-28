@@ -32,18 +32,31 @@ def product(request):
 
 
 
-@api_view(['PUT']) # PUT 요청만 허용
+@api_view(['PUT', 'DELETE']) # PUT, DELETE 요청만 허용
 def update_product(request, pk):
+
     product = get_object_or_404(Product, pk=pk) # 상품 조회
 
-    if product.author != request.user or request.user.is_superuser: # 작성자 또는 관리자인 경우 수정 가능
-        return Response({"error": "You do not have permission to edit this product."}, status=status.HTTP_403_FORBIDDEN) 
+    if request.method == 'PUT': # PUT 요청인 경우 상품 수정
 
-    serializer = ProductSerializer(product, data=request.data, partial=True) # 부분 업데이트 허용
+        if product.author != request.user and not request.user.is_superuser: # 작성자 또는 관리자가 아닌 경우 삭제 불가능
+            return Response({"error": "You do not have permission to edit this product."}, status=status.HTTP_403_FORBIDDEN) 
 
-    if serializer.is_valid(): # 유효성 검사
-        serializer.save() # 저장
+        serializer = ProductSerializer(product, data=request.data, partial=True) # 부분 업데이트 허용
 
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if serializer.is_valid(): # 유효성 검사
+            serializer.save() # 저장
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        
+    if request.method == 'DELETE': # DELETE 요청인 경우 상품 삭제
+
+        if product.author != request.user and not request.user.is_superuser: # 작성자 또는 관리자가 아닌경우 삭제 불가능
+            return Response({"error": "You do not have permission to delete this product."}, status=status.HTTP_403_FORBIDDEN)
+        
+        product.delete() # 삭제
+        return Response({"message": "Product deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+
