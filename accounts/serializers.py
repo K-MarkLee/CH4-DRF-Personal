@@ -37,3 +37,9 @@ class UserCreateSerializer(serializers.ModelSerializer):
         validated_data.pop('password2') # 비밀번호 2는 검증용이라 필요 없기에 제거
         user = User.objects.create_user(**validated_data) # 사용자 생성
         return user
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'name', 'nickname', 'birth_date', 'gender', 'bio', 'profile_image'] # 공개 필드
