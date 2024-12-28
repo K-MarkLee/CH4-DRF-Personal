@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('create_product/', views.create_product, name='create_product'), # 상품 생성
-    path('list_products/', views.list_products, name='list_products'), # 상품 목록
+    path('', views.product, name='product'), # 상품 생성 과 상품 목록
+    path('<int:pk>/', views.update_product, name='update_product'), # 상품 수정
 ]

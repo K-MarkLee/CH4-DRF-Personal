@@ -153,8 +153,8 @@ REST_FRAMEWORK = {
 
 from datetime import timedelta
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30), # 액세스 토큰 유효기간 30분
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1), # 리프레시 토큰 유효기간 1일
 }
 
 # Media 설정
