@@ -62,13 +62,15 @@ def logout(request):
     
 
 
-@api_view(['GET']) # GET 요청만 허용
+@api_view(['GET']) # GET, PUT 요청만 허용
 def profile(request, username):
-    try:
-        user = get_object_or_404(User, username=username)
-        serializer = ProfileSerializer(user)
+    if request.method == 'GET': # GET 요청인 경우 프로필 조회
+        user = get_object_or_404(User, username=username)   
+        try:
+            serializer = ProfileSerializer(user)
 
-    except User.DoesNotExist: # 사용자가 존재하지 않는 경우
-        return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        except User.DoesNotExist: # 사용자가 존재하지 않는 경우
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        return Response(serializer.data, status=status.HTTP_200_OK) 
     
-    return Response(serializer.data, status=status.HTTP_200_OK) 
