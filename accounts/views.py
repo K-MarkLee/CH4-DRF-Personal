@@ -46,6 +46,21 @@ def login(request):
         return Response({"error": "Invalid username or password"}, status=status.HTTP_401_UNAUTHORIZED)
     
 
+@api_view(['POST']) # POST 요청만 허용
+def logout(request):
+    try:
+        refresh_token = request.data.get('refresh') # refresh 토큰 가져오기 (refresh 토큰이란 access 토큰을 재발급하는 토큰)
+        
+        token = RefreshToken(refresh_token) # refresh 토큰 생성
+        token.blacklist() # 토큰 블랙리스트 추가 (토큰 만료로 로그아웃 처리)
+
+        return Response({"message": "Logout successful"}, status=status.HTTP_200_OK)
+    except:
+        refresh_token = request.data.get('refresh')
+        print(refresh_token)
+        return Response({"error": "Invalid refresh token"}, status=status.HTTP_400_BAD_REQUEST)
+    
+
 
 @api_view(['GET']) # GET 요청만 허용
 def profile(request, username):

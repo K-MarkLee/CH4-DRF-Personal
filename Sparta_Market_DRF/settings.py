@@ -39,13 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # third party apps
-    "rest_framework",
-    "rest_framework_simplejwt",
-    "django_extensions",
+    "rest_framework", 
+    "rest_framework_simplejwt", # JWT 토큰 라이브러리(로그인, 로그아웃)
+    "django_extensions", # Django 쉘 확장 라이브러리 (python manage.py shell_plus)
+    "rest_framework_simplejwt.token_blacklist", # 로그아웃 시 토큰 블랙리스트 추가 라이브러리
 
     # my apps
-    "accounts",
-    "products",
+    "accounts", # 계정 앱 (회원가입, 로그인, 로그아웃, 프로필 조회)
+    "products", # 상품 앱 (상품 생성, 조회, 수정, 삭제)
 ]
 
 
