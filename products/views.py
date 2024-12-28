@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .serializers import ProductSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.pagination import PageNumberPagination
 
 # Create your views here.
 
@@ -21,5 +22,8 @@ def create_product(request):
 @api_view(['GET']) # GET 요청만 허용
 def list_products(request):
     products = Product.objects.all().order_by("created_at") # 모든 상품 조회 (작성일 기준)
-    serializer = ProductSerializer(products, many=True) 
+    paginator = PageNumberPagination() # 페이지네이션 생성
+    paginator.page_size = 1 # 페이지당 상품 수
+    page = paginator.paginate_queryset(products, request)
+    serializer = ProductSerializer(page, many=True) 
     return Response(serializer.data, status=status.HTTP_200_OK) # 상품 목록 반환
