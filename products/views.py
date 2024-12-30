@@ -58,5 +58,5 @@ def update_product(request, pk):
             return Response({"error": "You do not have permission to delete this product."}, status=status.HTTP_403_FORBIDDEN)
         
         product.delete() # 삭제
-        return Response({"message": "Product deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+        return Response({"message": "Product deleted successfully."}, status=status.HTTP_204_NO_CONTENT) # 삭제 성공 메시지 반환
 
